@@ -5,29 +5,40 @@ import { useDispatch } from 'react-redux';
 import { setMode } from '../state';
 import {useTheme} from '@mui/material';
 
-const Navbar = () => {
+const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
   const dispatch = useDispatch();
   const theme = useTheme();
+
   return (
     <AppBar sx={{
       position: "static",
       background: "none",
       boxShadow: "none"
       }}>
-      
       <Toolbar sx={{ justifyContent: "space-between" }}>
+      
+      {/* LEFT SIDE: HAMBURGER MENU AND SEARCH BAR */}
       <Box>
-        <IconButton  onClick={(e) => console.log("hello")}>
+        <IconButton  onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
           <Dehaze/>
         </IconButton>
-        
-      <InputBase placeholder='Search'/>
+        <Box backgroundColor={theme.palette.background.alt}
+            borderRadius="9px"
+            gap="3rem"
+            p="0.1rem 0.1rem 0.1rem 1rem"
+            display={"inline-block"}
+            marginLeft="1.5rem">
 
-        <IconButton>
-          <Search/>
-        </IconButton>
+          <InputBase placeholder='Search'/>
+
+          <IconButton>
+            <Search/>
+          </IconButton>
         </Box>
-        <Box>
+      </Box>
+
+      {/* RIGHT SIDE: DARK/LIGHT SELECTOR AND SETTINGS ICON */}
+      <Box>
         <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlined sx={{ fontSize: "25px" }} />
@@ -35,10 +46,12 @@ const Navbar = () => {
               <LightModeOutlined sx={{ fontSize: "25px" }} />
             )}
         </IconButton>
+
         <IconButton>
-            <SettingsOutlined sx={{ fontSize: "25px" }} />
+          <SettingsOutlined sx={{ fontSize: "25px" }} />
         </IconButton>
         </Box>
+
       </Toolbar>
     </AppBar>
   )

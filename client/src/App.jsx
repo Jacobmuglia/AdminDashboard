@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { themeSettings } from "./theme"
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Layout from "./scenes/layout";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <CssBaseline />
         <Routes>
           <Route element={<Layout/>}>
-            <Route path="/"/>
+          <Route path="/dashboard"/>
           </Route>
         </Routes>
       </ThemeProvider>
