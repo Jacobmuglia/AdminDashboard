@@ -6,6 +6,10 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import generalRoutes from "./routes/general.js";
+
+
+
 /* CONFIGURATION */
 dotenv.config();
 const app = express();
@@ -17,6 +21,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
+/* ROUTES */
+app.use("/general", generalRoutes);
+
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose
@@ -26,5 +33,13 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    /* ONLY ADD DATA ONE TIME */
+    // AffiliateStat.insertMany(dataAffiliateStat);
+    // OverallStat.insertMany(dataOverallStat);
+    // Product.insertMany(dataProduct);
+    // ProductStat.insertMany(dataProductStat);
+    // Transaction.insertMany(dataTransaction);
+    // User.insertMany(dataUser);
   })
   .catch((error) => console.log(`${error} did not connect`));
