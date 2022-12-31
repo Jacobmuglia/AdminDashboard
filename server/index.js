@@ -6,9 +6,8 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
-
-
 
 /* CONFIGURATION */
 dotenv.config();
@@ -22,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 /* ROUTES */
+app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
 
 /* MONGOOSE SETUP */
@@ -37,8 +37,6 @@ mongoose
     /* ONLY ADD DATA ONE TIME */
     // AffiliateStat.insertMany(dataAffiliateStat);
     // OverallStat.insertMany(dataOverallStat);
-    // Product.insertMany(dataProduct);
-    // ProductStat.insertMany(dataProductStat);
     // Transaction.insertMany(dataTransaction);
     // User.insertMany(dataUser);
   })
