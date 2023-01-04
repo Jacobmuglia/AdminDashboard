@@ -8,6 +8,7 @@ import morgan from "morgan";
 
 import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
+import customerRoutes from "./routes/client.js"
 
 /* CONFIGURATION */
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(cors());
 /* ROUTES */
 app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
+app.use("/customers", customerRoutes)
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
