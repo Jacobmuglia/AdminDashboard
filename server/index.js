@@ -39,7 +39,6 @@ mongoose
     /* ONLY ADD DATA ONE TIME */
     // AffiliateStat.insertMany(dataAffiliateStat);
     // OverallStat.insertMany(dataOverallStat);
-    // Transaction.insertMany(dataTransaction);
     // User.insertMany(dataUser);
   })
   .catch((error) => console.log(`${error} did not connect`));
