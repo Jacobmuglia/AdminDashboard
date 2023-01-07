@@ -1,9 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001" }),
   reducerPath: "adminApi",
-  tagTypes: ["User", "Products", "Customers", "Transactions", "Geography","Sales", "Admins", "Performance"],
+  tagTypes: [
+    "User",
+    "Products",
+    "Customers",
+    "Transactions",
+    "Geography",
+    "Sales",
+    "Admins",
+    "Performance",
+    "Dashboard",
+  ],
   endpoints: (build) => ({
     getUser: build.query({
       query: (id) => `general/user/${id}`,
@@ -11,11 +21,11 @@ export const api = createApi({
     }),
     getProducts: build.query({
       query: () => "client/products",
-      providesTags: ["Products"]
+      providesTags: ["Products"],
     }),
     getCustomers: build.query({
       query: () => "client/customers",
-      providesTags: ["Customers"]
+      providesTags: ["Customers"],
     }),
     getTransactions: build.query({
       query: ({ page, pageSize, sort, search }) => ({
@@ -28,7 +38,7 @@ export const api = createApi({
     getGeography: build.query({
       query: () => "client/geography",
       providesTags: ["Geography"],
-    }),    
+    }),
     getSales: build.query({
       query: () => "sales/sales",
       providesTags: ["Sales"],
@@ -41,15 +51,21 @@ export const api = createApi({
       query: (id) => `management/performance/${id}`,
       providesTags: ["Performance"],
     }),
-})
-})
+    getDashboard: build.query({
+      query: () => "general/dashboard",
+      providesTags: ["Dashboard"],
+    }),
+  }),
+});
 
-export const {useGetUserQuery, 
-  useGetProductsQuery, 
-  useGetCustomersQuery, 
-  useGetTransactionsQuery, 
-  useGetGeographyQuery, 
+export const {
+  useGetUserQuery,
+  useGetProductsQuery,
+  useGetCustomersQuery,
+  useGetTransactionsQuery,
+  useGetGeographyQuery,
   useGetSalesQuery,
-   useGetAdminsQuery,
-    useGetUserPerformanceQuery
-  } = api;
+  useGetAdminsQuery,
+  useGetUserPerformanceQuery,
+  useGetDashboardQuery,
+} = api;
